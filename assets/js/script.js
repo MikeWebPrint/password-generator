@@ -1,5 +1,6 @@
 // Assignment code here
-const specialCharactersString = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+// const specialCharactersString = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+const specialCharactersString = "!\"#$%&'()*+-/=?@[]^_`{|}~";
 const lowerCaseString = "abcdefghijklmnopqrstuvwxyz";
 const upperCaseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const digitsString = "1234567890";
@@ -46,13 +47,25 @@ var generatePassword = function(){
               }
             }
             let securePassword = [];
-            securePassword.length = passwordLength;
-            console.log(securePassword);
-            let randomChar = Math.floor(Math.random() * passwordLength);
-            console.log(randomChar);
+            // securePassword.length = passwordLength;
+            // console.log(securePassword);
+
+            // // let randomChar = (Math.floor(Math.random()) * passwordLength);
+            // let randomChar = characterPool[(Math.floor(Math.random()) * passwordLength)];
+
+
+            // console.log(randomChar);
+            // console.log(characterPool[randomChar]);
             // Now to assign the randomChar to each index of the securePassword
-      }
-    }
+            for (let i=0; i < passwordLength; i++) {
+              securePassword.push(characterPool[Math.floor(Math.random() * characterPool.length)]);
+            // }
+            // securePassword = [randomChar];
+            }
+            console.log(securePassword);
+            return securePassword.join("");
+          }
+        }
   }
             // alert('great')
 
