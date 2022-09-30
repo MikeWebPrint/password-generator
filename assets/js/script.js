@@ -65,7 +65,7 @@ var generatePassword = function(){
             console.log(securePassword);
             return securePassword.join("");
           }
-        }
+        } return null
   }
             // alert('great')
 
