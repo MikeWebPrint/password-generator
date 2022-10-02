@@ -9,9 +9,10 @@ const upperCaseChars = upperCaseString.split('');
 const specialChars = specialCharactersString.split('');
 const digitChars = digitsString.split('');
 // console.log(lowerCaseChars, upperCaseChars, specialChars, digitChars);
+
 var generatePassword = function(){
   // initialize array of password characters the user wants
-  characterPool = [];
+  let characterPool = [];
   // characterPool = characterPool.concat(specialChars);
   // characterPool = characterPool.concat(lowerCaseChars);
   // characterPool = characterPool.concat(upperCaseChars);
@@ -50,7 +51,7 @@ var generatePassword = function(){
             if (characterPool[0] === undefined) {
               alert('You must choose at least one character type. Start again.');
               return null;
-            }
+              }
             }
             // initialize the password array
             let securePassword = [];
@@ -64,9 +65,9 @@ var generatePassword = function(){
           }
         } return null //if user declines to generate password
   }
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+var clearBtn = document.querySelector("clear");
 
 // Write password to the #password input
 function writePassword() {
@@ -74,6 +75,18 @@ function writePassword() {
   var password = generatePassword();
   passwordText.value = `Here is your password: \n\n` + password;
 }
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
+// generateBtn.textContent = 'Clear Password';
+// generateBtn.id ="clear";
+// let clearPassword = function() {
+//   var passwordText = document.querySelector("#password");
+//   passwordText.value = "";
+//   clearBtn.id = "generate";
+//   clearBtn.textContent = "Generate Password";
+// }
+
+// clearBtn.addEventListener("click", clearPassword);
