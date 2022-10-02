@@ -1,5 +1,5 @@
 // Assignment code here
-// const specialCharactersString = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+// initialize possible characters as available arrays
 const specialCharactersString = "!\"#$%&'()*+-/=?@[]^_`{|}~";
 const lowerCaseString = "abcdefghijklmnopqrstuvwxyz";
 const upperCaseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -8,27 +8,28 @@ const lowerCaseChars = lowerCaseString.split('');
 const upperCaseChars = upperCaseString.split('');
 const specialChars = specialCharactersString.split('');
 const digitChars = digitsString.split('');
-// console.log(specialChars);
-// console.log(lowerCaseChars);
-// console.log(upperCaseChars);
-// console.log(digitChars);
+// console.log(lowerCaseChars, upperCaseChars, specialChars, digitChars);
 var generatePassword = function(){
-  // console.log('hello');
+  // initialize array of password characters the user wants
   characterPool = [];
   // characterPool = characterPool.concat(specialChars);
   // characterPool = characterPool.concat(lowerCaseChars);
   // characterPool = characterPool.concat(upperCaseChars);
   // characterPool = characterPool.concat(digitChars);
   // console.log(characterPool);
+
   if (confirm('Would you like to generate a password?')) {
       passwordLength = prompt('How many characters?'); 
+      // check that the input is a number
       if (isNaN(passwordLength)) {
-        alert('You must enter a number.');
-        return
+        alert('You must enter a number. Start again');
+        return null;
         } else {
+          // check that the length is within bounds
           if ((passwordLength > 128) || (passwordLength < 8)) {
             alert('Password must be between 8 and 128 characters long.');
           } else {
+            // user confirms the types of characters to include
             if (confirm('Would you like to include lowercase letters?')) {
               characterPool = characterPool.concat(lowerCaseChars);
                 console.log(characterPool);
@@ -44,43 +45,35 @@ var generatePassword = function(){
             if (confirm('Would you like to include special characters?')) {
               characterPool = characterPool.concat(specialChars);
                 console.log(characterPool);
-              }
             }
+            // if user selects no character types, no password will be generated
+            if (characterPool[0] === undefined) {
+              alert('You must choose at least one character type. Start again.');
+              return null;
+            }
+            }
+            // initialize the password array
             let securePassword = [];
-            // securePassword.length = passwordLength;
-            // console.log(securePassword);
-
-            // // let randomChar = (Math.floor(Math.random()) * passwordLength);
-            // let randomChar = characterPool[(Math.floor(Math.random()) * passwordLength)];
-
-
-            // console.log(randomChar);
-            // console.log(characterPool[randomChar]);
-            // Now to assign the randomChar to each index of the securePassword
+            // add items to the securePassword array, as many items as the user-defined length, randomly from the character Pool
             for (let i=0; i < passwordLength; i++) {
               securePassword.push(characterPool[Math.floor(Math.random() * characterPool.length)]);
-            // }
-            // securePassword = [randomChar];
             }
-            console.log(securePassword);
+            // console.log(securePassword);
+            // turn the securePassword array into a string
             return securePassword.join("");
           }
-        } return null
+        } return null //if user declines to generate password
   }
-            // alert('great')
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+  var password = generatePassword();
+  passwordText.value = `Here is your password: \n\n` + password;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-// generatePassword()
