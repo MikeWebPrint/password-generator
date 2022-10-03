@@ -10,7 +10,7 @@ const specialChars = specialCharactersString.split('');
 const digitChars = digitsString.split('');
 // console.log(lowerCaseChars, upperCaseChars, specialChars, digitChars);
 
-var generatePassword = function(){
+var generatePassword = function() {
   // initialize array of password characters the user wants
   let characterPool = [];
   // characterPool = characterPool.concat(specialChars);
@@ -20,7 +20,7 @@ var generatePassword = function(){
   // console.log(characterPool);
 
   if (confirm('Would you like to generate a password?')) {
-      passwordLength = prompt('How many characters?'); 
+      passwordLength = prompt('Please enter the password length, between 8 and 128.'); 
       // check that the input is a number
       if (isNaN(passwordLength)) {
         alert('You must enter a number. Start again');
@@ -31,21 +31,21 @@ var generatePassword = function(){
             alert('Password must be between 8 and 128 characters long.');
           } else {
             // user confirms the types of characters to include
-            if (confirm('Would you like to include lowercase letters?')) {
+            if (confirm('Would you like to include lowercase letters?\n OK for Yes, Cancel for No.')) {
               characterPool = characterPool.concat(lowerCaseChars);
-                console.log(characterPool);
+                // console.log(characterPool);
             }
-            if (confirm('Would you like to include uppercase letters?')) {
+            if (confirm('Would you like to include uppercase letters?\n OK for Yes, Cancel for No.')) {
               characterPool = characterPool.concat(upperCaseChars);
-                console.log(characterPool);
+                // console.log(characterPool);
             }
-            if (confirm('Would you like to include numbers?')) {
+            if (confirm('Would you like to include numbers?\n OK for Yes, Cancel for No.')) {
               characterPool = characterPool.concat(digitChars);
-                console.log(characterPool);
+                // console.log(characterPool);
             }
-            if (confirm('Would you like to include special characters?')) {
+            if (confirm('Would you like to include special characters?\n OK for Yes, Cancel for No.')) {
               characterPool = characterPool.concat(specialChars);
-                console.log(characterPool);
+                // console.log(characterPool);
             }
             // if user selects no character types, no password will be generated
             if (characterPool[0] === undefined) {
@@ -67,19 +67,18 @@ var generatePassword = function(){
   }
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
-var clearBtn = document.querySelector("clear");
 
 // Write password to the #password input
 function writePassword() {
   var passwordText = document.querySelector("#password");
   var password = generatePassword();
-  passwordText.value = `Here is your password: \n\n` + password;
+  passwordText.value = password;
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-
+// unused code below trying to clear password field before second attempt
+// var clearBtn = document.querySelector("clear");
 // generateBtn.textContent = 'Clear Password';
 // generateBtn.id ="clear";
 // let clearPassword = function() {
